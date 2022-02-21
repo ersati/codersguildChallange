@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+        body { 
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .form{
+            display: flex;
+        }
+        #birthday{
+            padding: 10px;
+            border: none;
+            border-bottom: 2px dotted coral;
+        }
+        .submit {
+            padding: 12px 12px;
+            background-color: coral;
+            color: beige;
+            border: none;
+        }
+        .submit:hover{
+            font-weight: bold;
+        }
+        .wrapper{
+            margin:50px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <h1>Check your Age</h1>
+    <form class="form" action="" method="get">
+        <label for="birthday">Birthday Year</label>
+   
+        <input type="number" name="" id="birthday">
+        <input type="submit" value="Check" class="submit">
+    </form>
+    </div>
+    <script>
+        const form = document.querySelector('.form');
+        const date = new Date
+        
+        const curYear = date.getFullYear()
+        const birthday = document.querySelector('#birthday');
+        const submit = document.querySelector('.submit'); 
+submit.addEventListener('click', (e) => {
+e.preventDefault()
+const userAge = curYear - birthday.value;
+console.log(userAge)
+if(userAge> 0 && userAge< 150){
+    const p = document.createElement('p');
+    p.innerHTML = `Your age is ${userAge}`
+    document.querySelector('.wrapper').appendChild(p)
+}
+birthday.value = '';
+})
+        
+    </script>
+</body>
+</html>
+
