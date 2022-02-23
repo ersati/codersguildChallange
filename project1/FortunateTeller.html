@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+        /* body { 
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .form{
+            display: flex;
+        }
+        #birthday{
+            padding: 10px;
+            border: none;
+            border-bottom: 2px dotted coral;
+        }
+        .submit {
+            padding: 12px 12px;
+            background-color: coral;
+            color: beige;
+            border: none;
+        }
+        .submit:hover{
+            font-weight: bold;
+        }
+        .wrapper{
+            margin:50px;
+            padding: 10px;
+        } */
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+        <h1>The Fortune Teller</h1>
+        <p class="text"></p>
+        <button class='btn'>Render Teller</button>
+    </div>
+    <script>
+        const text = document.querySelector('.text');
+        const btn = document.querySelector('.btn');
+        const numberOfChilder = [1, 2, 3, 4, 5, ];
+        const partnerNames = ['Anna', 'Julia', 'Margaret', 'Justina', 'Olivia'];
+        const locationCity = ['Madrit', 'London', 'Berlin', 'Warsaw', 'Praga'];
+        const job = ['cleaner', 'manager', 'CEO', 'houseKeeper', 'Programmer'];
+
+        function randomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        btn.addEventListener('click', (e) => {
+            text.textContent = ''
+            text.textContent = `You will be a ${job[randomInteger(0,4)]} in ${locationCity[randomInteger(0,4)]} , and married to ${partnerNames[randomInteger(0,4)]} with ${numberOfChilder[randomInteger(0,4)]} kids.`
+        })
+
+        
+    </script>
+</body>
+
+</html>

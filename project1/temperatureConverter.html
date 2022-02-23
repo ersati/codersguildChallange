@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+  
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <h1>Generate Temperature</h1>
+    <p class="text-fr"></p>
+    <p class="text-cel"></p>
+    <button class='btn'>Generate Temperature</button>
+    </div>
+    <script>
+        const celcius = document.querySelector('.text-cel');
+        const farenhait = document.querySelector('.text-fr');
+        
+        const btn = document.querySelector('.btn');
+        function randomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        btn.addEventListener('click', (e) => {
+            const generateTemp = randomInteger(-20,40)
+            celcius.textContent = `This is ${generateTemp} \u00B0 C`
+            const tempFaren = Math.round((generateTemp * 9/5) +32)
+            farenhait.textContent = `This is ${tempFaren} \u00B0 F`
+        })
+
+
+        
+    </script>
+</body>
+</html>
+
