@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reading List</title>
+</head>
+<style>
+    :root {
+        --lime: #b9dcb1;
+        --cel: #e6f9af;
+        --green: #8bbeb2;
+        --grey: #628695;
+        --blue: #384e77;
+        --prus: #18314f;
+        --russian: #0d0630;
+    }
+
+    body {
+        background-image: linear-gradient(var(--grey), var(--green));
+        min-height: 100vh;
+        color: var(--cel);
+        margin: 0;
+        padding: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .wrappper-form {
+
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .btn {
+        padding: 20px 30px;
+        background-color: var(--prus);
+        color: var(--cel);
+        border: none;
+    }
+
+    .btn:hover {
+        font-weight: bold;
+    }
+
+    .form-item {
+        align-self: center;
+        padding: 5px;
+
+    }
+
+    .int-text {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid var(--russian);
+    }
+
+    .book {
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .book:nth-child(even) {
+        background-color: var(--russian);
+        color: var(--lime)
+    }
+
+    .book:nth-child(odd) {
+        background-color: var(--lime);
+        color: var(--russian)
+    }
+
+    .list {
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .wrapper-list {
+        align-self: stretch;
+    }
+</style>
+
+<body>
+
+    <div class="wrappper-form">
+        <h1>The Reading List</h1>
+        <form action="" method="get" class="form">
+            <label for="title" class="form-item">Title</label>
+            <input type="text" name='title' id="title" class="form-item int-text">
+            <label for="author" class="form-item">Author</label>
+            <input type="text" name='author' id="author" class="form-item int-text">
+            <label for="isRead" class="form-item">Have you read This book</label>
+            <input type="checkbox" name="isRead" id="isRead" class="form-item">
+            <input type="submit" value="Add New Book" class="form-item btn">
+        </form>
+        <div class="wrapper-list">
+            <ul class="list">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        class ListOfBook {
+            constructor(title, author, readStatus = false) {
+                this.title = title;
+                this.author = author;
+                this.readStatus = readStatus
+            }
+        }
+        const books = []
+        const form = document.querySelector('.form');
+        const ul = document.querySelector('.list');
+
+
+        function renderBooks() {
+            const data = books.map(el => console.log(el.title, el.author, el.readStatus))
+            const html = books.map(el =>
+                `<li class='book'> <div class='title block'>Title:${el.title}</div><div class='author block'>Author:${el.author}</div> <div class='is-read block'>${el.readStatus ? 'I read it' : 'Not yet'}</div>  </li>`
+            ).join('')
+            ul.innerHTML = html
+            console.log(html)
+        }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            if (!form.elements['title'].value || !form.elements['author'].value) {
+                console.log('empty data')
+            } else {
+                const bookInfo = new ListOfBook(form.elements['title'].value, form.elements['author'].value,
+                    form
+                    .elements['isRead'].checked)
+                books.push(bookInfo)
+                console.log(books)
+                form.reset()
+                renderBooks()
+            }
+
+        })
+    </script>
+</body>
+
+</html>

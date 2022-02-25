@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    :root {
+        --lime: #b9dcb1;
+        --cel: #e6f9af;
+        --green: #8bbeb2;
+        --grey: #628695;
+        --blue: #384e77;
+        --prus: #18314f;
+        --russian: #0d0630;
+    }
+
+    body {
+        background-image: linear-gradient(var(--grey), var(--green));
+        min-height: 100vh;
+        color: var(--cel);
+        margin: 0;
+        padding: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .wrappper-form {
+
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .btn {
+        padding: 20px 30px;
+        background-color: var(--prus);
+        color: var(--cel);
+        border: none;
+    }
+
+    .btn:hover {
+        font-weight: bold;
+    }
+
+    .form-item {
+        align-self: center;
+        padding: 5px;
+
+    }
+
+    .int-text {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid var(--russian);
+    }
+
+    .book {
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .book:nth-child(even) {
+        background-color: var(--russian);
+        color: var(--lime)
+    }
+
+    .book:nth-child(odd) {
+        background-color: var(--lime);
+        color: var(--russian)
+    }
+
+    .list {
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .wrapper-list {
+        align-self: stretch;
+    }
+</style>
+</head>
+<body>
+    <h1>Check the console</h1>
+
+
+    <div class="wrappper-form">
+        <h1>The Reading List</h1>
+        <form action="" method="get" class="form">
+            <label for="title" class="form-item">Recipe Title</label>
+            <input type="text" name='title' id="title" class="form-item int-text">
+            <label for="servings" class="form-item">Servings</label>
+            <input type="number" name='servings' id="servings" class="form-item int-text">
+            <label for="ingriediens" class="form-item">Put ingriediens with space</label>
+            <input type="text" name="ingriediens" id="isRead" class="form-item int-text">
+            <label for="descriptions" class="form-item">Description</label>
+            <textarea name="descriptions" id="descriptions" cols="30" rows="10" class="descriptions int-text"></textarea>
+            <input type="submit" value="Add New Book" class="form-item btn">
+        </form>
+        <div class="wrapper-list">
+            <ul class="list">
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        function recipe(recipeTitle, servings, ingredients, directions){
+            const obj ={
+                recipeTitle ,
+                servings,
+                ingredients,
+                directions,
+            }
+            return obj
+        }
+        const recipes = []
+        const form = document.querySelector('.form');
+        const ul = document.querySelector('.list');
+
+
+        function renderRecipes() {
+            // const data = books.map(el => console.log(el.recipeTitle, el.author, el.readStatus))
+            const html = recipes.map(el =>
+                `<div class='wrapper'><p class='title block'> ${el.recipeTitle}</p><p class='title block'> ${el.servings}</p> <ul> ${el.ingredients.map(el => `<li>${el}</li>`)}</ul><p class='title block'> ${el.descriptions}</p>`).join('')
+            ul.innerHTML = html
+            console.log(html)
+        }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+           
+            if (!form.elements['title'].value || !form.elements['servings'].value) {
+                console.log('empty data')
+            } else {
+
+                const ing = form.elements['ingriediens'].value
+                const ingriediens = ing.split(' ')
+                const recipeInfo = recipe(form.elements['title'].value, form.elements['servings'].value,
+                ingriediens,form.elements['descriptions'].value)
+                recipes.push(recipeInfo)
+                console.log(recipes)
+                form.reset()
+                renderRecipes()
+            }
+
+        })
+    </script>
+</body>
+</html>
