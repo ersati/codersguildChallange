@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+   <h1>About Me</h1>
+
+  <ul>
+    <li>Nickname:
+      <span id="nickname"></span>
+    </li>
+    <li>Favorites:
+      <span id="favorites"></span>
+    </li>
+    <li>Hometown:
+      <span id="hometown"></span>
+    </li>
+   </ul>
+<script>
+
+    const body = document.body
+    body.style.fontFamily = "Arial, sans-serif"
+    const nick = document.querySelector('#nickname');
+    const favs = document.querySelector('#favorites');
+    const ht = document.querySelector('#hometown')
+    const lis = document.querySelectorAll('li');
+    nick.textContent = 'Ersati';
+    favs.textContent = 'Computer Games';
+    ht.textContent = 'Zdunska Wola'
+    lis.forEach(li => li.style.backgroundColor = 'red')
+    const img = document.createElement('img');
+    img.src = 'https://media-exp1.licdn.com/dms/image/C5603AQFkGeSYYQZsew/profile-displayphoto-shrink_400_400/0/1616445171617?e=1651708800&v=beta&t=elPng4jKHGKthj5KKYLBJ7f8DnG8xZLjG-HDGN-AkIk'
+    body.appendChild(img)
+</script>
+</body>
+</html>
