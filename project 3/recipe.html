@@ -90,7 +90,7 @@
 </style>
 </head>
 <body>
-    <h1>Check the console</h1>
+   
 
 
     <div class="wrappper-form">
@@ -104,7 +104,7 @@
             <input type="text" name="ingriediens" id="isRead" class="form-item int-text">
             <label for="descriptions" class="form-item">Description</label>
             <textarea name="descriptions" id="descriptions" cols="30" rows="10" class="descriptions int-text"></textarea>
-            <input type="submit" value="Add New Book" class="form-item btn">
+            <input type="submit" value="Add New Recipe" class="form-item btn">
         </form>
         <div class="wrapper-list">
             <ul class="list">
@@ -131,21 +131,20 @@
 
 
         function renderRecipes() {
-            // const data = books.map(el => console.log(el.recipeTitle, el.author, el.readStatus))
+           
             const html = recipes.map(el =>
-                `<div class='wrapper'><p class='title block'> ${el.recipeTitle}</p><p class='title block'> ${el.servings}</p> <ul> ${el.ingredients.map(el => `<li>${el}</li>`)}</ul><p class='title block'> ${el.descriptions}</p>`).join('')
+                `<div class='wrapper'><p class='title block'> ${el.recipeTitle}</p><p class='title block'> ${el.servings}</p> <ul> ${el.ingredients.map(el => `<li>${el}</li>`).join('')}</ul><p class='title block'> ${el.directions}</p>`).join('')
             ul.innerHTML = html
-            console.log(html)
         }
         form.addEventListener('submit', (e) => {
             e.preventDefault()
-           
             if (!form.elements['title'].value || !form.elements['servings'].value) {
                 console.log('empty data')
             } else {
 
                 const ing = form.elements['ingriediens'].value
                 const ingriediens = ing.split(' ')
+                console.log(ing, ingriediens)
                 const recipeInfo = recipe(form.elements['title'].value, form.elements['servings'].value,
                 ingriediens,form.elements['descriptions'].value)
                 recipes.push(recipeInfo)
